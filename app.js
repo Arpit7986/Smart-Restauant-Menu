@@ -17,7 +17,7 @@ const paymentRoute = require('./routes/paymentRoute');
 const ejsMate=require('ejs-mate')
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/Restaurant')
+mongoose.connect(process.env.DB_URL)
 .then(()=>{
     console.log("DataBase Connected Successfully");
 })
@@ -59,7 +59,7 @@ app.use(Menu)
 app.use(Login)      
 app.use('/',paymentRoute)
 
-
-app.listen(8080,()=>{
-    console.log("Server is Connected At Port No 8080");
+const port=process.env.PORT
+app.listen(port,()=>{
+    console.log(`Server is Connected At Port No ${port}`);
 })
